@@ -9,8 +9,9 @@ generator client {
 // enough when changing adapters.
 // See https://www.prisma.io/docs/orm/reference/prisma-schema-reference#string for more information
 datasource db {
-  provider = "sqlite"
-  url      = "file:dev.sqlite"
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model Session {
@@ -31,4 +32,54 @@ model Session {
   emailVerified Boolean?  @default(false)
   refreshToken        String?
   refreshTokenExpires DateTime?
+}
+
+enum ShopStatus {
+  ACTIVE
+  UNINSTALLED
+}
+
+enum LoginEventType {
+  INSTALL
+  REINSTALL
+  LOGIN
+  APP_ACCESS
+  UNINSTALL
+}
+
+model Shop {
+  id              String     @id @default(uuid()) @db.Uuid
+  shopifyShopId   String     @unique
+  shopDomain      String     @unique
+  shopName        String
+  email           String?
+  ownerName       String?
+  phone           String?
+  countryCode     String?
+  currency        String
+  timezone        String
+  shopifyPlan     String?
+  status          ShopStatus @default(ACTIVE)
+  installedAt     DateTime   @default(now())
+  lastInstalledAt DateTime   @default(now())
+  uninstalledAt   DateTime?
+  lastLoginAt     DateTime?
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+  loginHistory    LoginHistory[]
+
+  @@index([status])
+}
+
+model LoginHistory {
+  id            String         @id @default(uuid()) @db.Uuid
+  shopId        String         @db.Uuid
+  shop          Shop           @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  shopifyUserId String?
+  eventType     LoginEventType
+  createdAt     DateTime       @default(now())
+
+  @@index([shopId, createdAt])
+  @@index([shopId, shopifyUserId, createdAt])
+  @@index([createdAt])
 }
