@@ -2,7 +2,7 @@
 
 client_id = "fa9f8328b223573c0c70ba52454e0217"
 name = "COD FORM"
-application_url = "https://example.com"
+application_url = "https://cod-form-production-9e72351b.up.railway.app"
 embedded = true
 
 [access_scopes]
@@ -83,8 +83,10 @@ api_version = "2026-10"
   query_filter = "product.status:'ACTIVE'"
 
 [auth]
-redirect_urls = [ "https://example.com/api/auth" ]
+redirect_urls = [
+  "https://cod-form-production-9e72351b.up.railway.app/auth/callback",
+  "https://cod-form-production-9e72351b.up.railway.app/api/auth"
+]
 
 [build]
-include_config_on_deploy = true
 automatically_update_urls_on_dev = true

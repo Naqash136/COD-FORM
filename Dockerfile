@@ -6,7 +6,6 @@ EXPOSE 3000
 WORKDIR /app
 
 ENV NODE_ENV=production
-ENV HOST=0.0.0.0
 
 COPY package.json package-lock.json* ./
 
@@ -18,5 +17,7 @@ RUN cat certs/prod-ca-2021.crt >> /etc/ssl/certs/ca-certificates.crt
 ENV SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 
 RUN npm run build
+
+ENV HOST=0.0.0.0
 
 CMD ["npm", "run", "docker-start"]
