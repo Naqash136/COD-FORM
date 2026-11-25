@@ -31,6 +31,8 @@ function createPrismaClient() {
 }
 
 declare global {
+  // The Prisma client is cached on globalThis in development. `var` is required for that declaration.
+  // eslint-disable-next-line no-var
   var prismaGlobal: PrismaClient | undefined;
 }
 

@@ -2,9 +2,12 @@ import type { HeadersFunction, LoaderFunctionArgs } from "react-router";
 import { Outlet, useLoaderData, useRouteError } from "react-router";
 import { boundary } from "@shopify/shopify-app-react-router/server";
 import { AppProvider } from "@shopify/shopify-app-react-router/react";
+import type {} from "@shopify/app-bridge-types";
 
+import { appNavigation } from "../dashboard/navigation";
 import { registerAuthenticatedMerchant } from "../models/merchant.server";
 import { authenticate } from "../shopify.server";
+import "../styles/cod-form.css";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const { admin, session } = await authenticate.admin(request);
@@ -20,10 +23,15 @@ export default function App() {
   return (
     <AppProvider apiKey={apiKey}>
       <s-app-nav>
-        <s-link href="/app">Home</s-link>
-        <s-link href="/app/additional">Additional page</s-link>
+        {appNavigation.map((item) => (
+          <s-link key={item.href} href={item.href}>
+            {item.label}
+          </s-link>
+        ))}
       </s-app-nav>
-      <Outlet />
+      <div className="cod-app">
+        <Outlet />
+      </div>
     </AppProvider>
   );
 }
