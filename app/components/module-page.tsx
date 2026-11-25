@@ -1,8 +1,7 @@
 import type { ReactNode } from "react";
 import type { MerchantView } from "../dashboard/merchant.server";
-import { currencyNote } from "../dashboard/presentation";
 
-export function StoreContext({ merchant }: { merchant: MerchantView }) {
+export function DevelopmentNotice({ merchant }: { merchant: MerchantView }) {
   if (!merchant.registered) {
     return (
       <s-banner heading="Store record unavailable" tone="warning">
@@ -13,25 +12,19 @@ export function StoreContext({ merchant }: { merchant: MerchantView }) {
     );
   }
 
+  if (!merchant.developmentStore) return null;
+
   return (
-    <s-stack direction="block" gap="base">
-      {merchant.developmentStore ? (
-        <s-banner heading="Development store" tone="info">
-          <s-text>
-            {merchant.shopName} ({merchant.shopDomain}) is on the{" "}
-            {merchant.plan} plan.
-          </s-text>
-        </s-banner>
-      ) : (
-        <s-banner heading={merchant.shopName} tone="info">
-          <s-text>
-            {merchant.shopDomain}
-            {merchant.plan ? ` · ${merchant.plan}` : ""}
-          </s-text>
-        </s-banner>
-      )}
-      <s-text color="subdued">{currencyNote(merchant.currency)}</s-text>
-    </s-stack>
+    <div className="cod-dev-banner" role="status">
+      <s-icon type="alert-triangle" tone="warning" />
+      <div className="cod-dev-copy">
+        <strong>Development store</strong>
+        <p>
+          {merchant.shopName} ({merchant.shopDomain}) is on the {merchant.plan}{" "}
+          plan.
+        </p>
+      </div>
+    </div>
   );
 }
 
@@ -48,14 +41,15 @@ export function ModulePage({
 }) {
   return (
     <s-page heading={heading} inlineSize="large">
-      <div className="cod-stack">
-        <StoreContext merchant={merchant} />
-        <s-section heading="Not configured">
-          <s-stack direction="block" gap="base">
+      <div className="cod-dashboard">
+        <DevelopmentNotice merchant={merchant} />
+        <section className="cod-panel">
+          <div className="cod-inline">
+            <h2 className="cod-section-title">Not configured</h2>
             <s-badge tone="info">Not configured</s-badge>
-            <s-paragraph>{summary}</s-paragraph>
-          </s-stack>
-        </s-section>
+          </div>
+          <s-paragraph>{summary}</s-paragraph>
+        </section>
         {children}
       </div>
     </s-page>

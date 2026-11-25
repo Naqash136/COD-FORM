@@ -1,69 +1,222 @@
 .cod-app {
-  color: #111111;
+  color: #1a1a1a;
 }
 
-.cod-brand {
+.cod-dashboard {
+  box-sizing: border-box;
+  width: min(1440px, 100%);
+  margin-inline: auto;
+  padding: 4px 24px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.cod-header,
+.cod-section,
+.cod-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cod-header-top,
+.cod-header-filters,
+.cod-section-head,
+.cod-panel-head,
+.cod-panel-tools,
+.cod-card-top,
+.cod-widget,
+.cod-dev-banner {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 12px;
 }
 
-.cod-mark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: 0.75rem;
-  background: #6d28d9;
-  color: #ffffff;
-  font-size: 0.7rem;
+.cod-header-top,
+.cod-header-filters,
+.cod-section-head,
+.cod-panel-head,
+.cod-panel-tools {
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.cod-page-title,
+.cod-section-title,
+.cod-metric-label,
+.cod-metric-value,
+.cod-widget-copy,
+.cod-dev-copy,
+.cod-note {
+  margin: 0;
+}
+
+.cod-page-title {
+  font-size: 28px;
+  line-height: 1.15;
   font-weight: 700;
-  letter-spacing: 0.02em;
+  letter-spacing: -0.03em;
 }
 
-.cod-card {
+.cod-store-name {
+  margin: 4px 0 0;
+  color: #616161;
+  font-size: 14px;
+}
+
+.cod-section-title {
+  font-size: 22px;
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.cod-widget {
   background: #ffffff;
   border: 1px solid #e6e6e6;
-  border-radius: 0.75rem;
-  border-top: 3px solid #6d28d9;
-  min-width: 0;
+  border-radius: 12px;
+  padding: 10px 14px;
+}
+
+.cod-widget-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: #616161;
+  font-size: 13px;
+}
+
+.cod-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cod-dev-banner {
+  align-items: flex-start;
+  background: #fff8db;
+  border: 1px solid #f0e1a8;
+  border-radius: 12px;
+  color: #5c4813;
+  padding: 12px 14px;
+}
+
+.cod-dev-copy strong {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 14px;
+}
+
+.cod-dev-copy p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.cod-note {
+  color: #616161;
+  font-size: 13px;
+  line-height: 1.4;
 }
 
 .cod-metrics {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(11.5rem, 1fr));
-  gap: 0.75rem;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.cod-card {
+  min-width: 0;
+  background: #ffffff;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  padding: 16px 18px 18px;
+}
+
+.cod-card-top {
+  margin-bottom: 14px;
+}
+
+.cod-icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background: #f3e8ff;
+  color: #6d28d9;
+}
+
+.cod-icon s-icon {
+  color: #6d28d9;
+}
+
+.cod-metric-label {
+  color: #616161;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
 }
 
 .cod-metric-value {
-  margin: 0;
-  color: #111111;
-  font-size: 1.5rem;
-  font-weight: 650;
+  color: #1a1a1a;
+  font-size: 28px;
+  font-weight: 700;
   letter-spacing: -0.03em;
-  line-height: 1.2;
+  line-height: 1.15;
 }
 
-.cod-toolbar {
+.cod-panel {
+  background: #ffffff;
+  border: 1px solid #e6e6e6;
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.cod-search {
+  width: min(100%, 280px);
+  flex: 1 1 220px;
+}
+
+.cod-search s-search-field {
+  display: block;
+  width: 100%;
+}
+
+.cod-actions,
+.cod-inline {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.75rem;
+  gap: 8px;
 }
 
-.cod-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-@media (max-width: 640px) {
+@media (min-width: 700px) {
   .cod-metrics {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .cod-metrics {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 699px) {
+  .cod-dashboard {
+    padding-inline: 16px;
   }
 
-  .cod-brand {
-    align-items: flex-start;
+  .cod-page-title {
+    font-size: 24px;
+  }
+
+  .cod-section-title {
+    font-size: 20px;
   }
 }

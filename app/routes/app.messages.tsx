@@ -23,7 +23,7 @@ export default function MessagesPage() {
     >
       <s-section heading="Message summary">
         <s-stack direction="block" gap="base">
-          <MetricGrid labels={MESSAGE_METRICS} detail="Not configured" />
+          <MetricGrid labels={MESSAGE_METRICS} />
           <UnavailableButton label="Connect messaging" variant="primary" />
           <s-text color="subdued">Not available yet.</s-text>
         </s-stack>

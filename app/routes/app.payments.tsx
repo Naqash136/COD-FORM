@@ -23,7 +23,7 @@ export default function PaymentsPage() {
     >
       <s-section heading="Payment performance">
         <s-stack direction="block" gap="base">
-          <MetricGrid labels={PAYMENT_METRICS} detail="Not tracked" />
+          <MetricGrid labels={PAYMENT_METRICS} />
           <UnavailableButton label="Configure payments" icon="settings" variant="primary" />
           <s-text color="subdued">Not available yet.</s-text>
         </s-stack>

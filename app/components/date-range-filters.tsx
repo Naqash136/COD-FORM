@@ -15,28 +15,36 @@ export function DateRangeFilters({
   const selected = parseDateRange(params.get("range"));
 
   return (
-    <div className="cod-toolbar">
-      <s-button-group accessibilityLabel="Date range" gap="base">
+    <div className="cod-header-filters">
+      <div className="cod-filters" role="group" aria-label="Date range">
         {DATE_RANGES.map((range) => {
           const next = new URLSearchParams(params);
           next.set("range", range.id);
+          const active = selected === range.id;
           return (
             <s-button
               key={range.id}
-              variant={selected === range.id ? "primary" : "secondary"}
+              variant={active ? "primary" : "secondary"}
               href={`${location.pathname}?${next.toString()}`}
+              accessibilityLabel={
+                active ? `${range.label}, selected` : range.label
+              }
             >
               {range.label}
             </s-button>
           );
         })}
-      </s-button-group>
-      {analyticsHref ? (
-        <s-link href={analyticsHref}>View full analytics</s-link>
-      ) : null}
-      <s-text color="subdued">
-        Showing {dateRangeLabel(selected)}. Tracking is not available yet.
-      </s-text>
+      </div>
+      <div className="cod-actions">
+        {analyticsHref ? (
+          <s-button variant="tertiary" href={analyticsHref}>
+            View full analytics
+          </s-button>
+        ) : null}
+        <p className="cod-note">
+          Showing {dateRangeLabel(selected)}. Tracking is not available yet.
+        </p>
+      </div>
     </div>
   );
 }

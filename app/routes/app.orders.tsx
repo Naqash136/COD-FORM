@@ -1,5 +1,6 @@
 import type { LoaderFunctionArgs } from "react-router";
 import { useLoaderData } from "react-router";
+import { SectionBlock } from "../components/metric-card";
 import { ModulePage } from "../components/module-page";
 import { headers } from "../dashboard/headers";
 import { loadMerchantView } from "../dashboard/merchant.server";
@@ -20,10 +21,9 @@ export default function OrdersPage() {
       summary="COD FORM is not tracking orders yet. This table stays empty until order tracking is implemented."
       merchant={merchant}
     >
-      <s-section heading="Orders">
-        <s-stack direction="block" gap="base">
-          <s-text color="subdued">{currencyNote(merchant.currency)}</s-text>
-          <s-table variant="auto">
+      <SectionBlock title="Orders">
+        <p className="cod-note">{currencyNote(merchant.currency)}</p>
+        <s-table variant="auto">
             <s-table-header-row>
               <s-table-header listSlot="primary">Order</s-table-header>
               <s-table-header listSlot="labeled">Payment</s-table-header>
@@ -42,8 +42,7 @@ export default function OrdersPage() {
               recorded.
             </s-text>
           </s-empty-state>
-        </s-stack>
-      </s-section>
+      </SectionBlock>
     </ModulePage>
   );
 }

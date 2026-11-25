@@ -9,67 +9,59 @@ import {
 } from "../dashboard/presentation";
 import { BundleDeals } from "./bundle-deals";
 import { DateRangeFilters } from "./date-range-filters";
-import { MetricGrid, UnavailableButton } from "./metric-card";
-import { StoreContext } from "./module-page";
+import { DevelopmentNotice } from "./module-page";
+import { MetricGrid, MetricIconBadge, SectionBlock, UnavailableButton } from "./metric-card";
 
 export function OverviewDashboard({ merchant }: { merchant: MerchantView }) {
-  const note = currencyNote(merchant.currency);
-
   return (
-    <s-page heading="Overview" inlineSize="large">
+    <s-page inlineSize="large">
       <UnavailableButton
         slot="primary-action"
         label="Create bundle deal"
         icon="plus"
         variant="primary"
       />
-      <div className="cod-stack">
-        <div className="cod-brand">
-          <span className="cod-mark" aria-hidden="true">
-            COD
-          </span>
-          <s-stack direction="block" gap="none">
-            <s-heading>COD FORM</s-heading>
-            <s-text color="subdued">{merchant.shopName}</s-text>
-          </s-stack>
-        </div>
+      <div className="cod-dashboard">
+        <header className="cod-header">
+          <div className="cod-header-top">
+            <div>
+              <h1 className="cod-page-title">Overview</h1>
+              <p className="cod-store-name">{merchant.shopName}</p>
+            </div>
+            <div className="cod-widget">
+              <MetricIconBadge type="view" />
+              <div className="cod-widget-copy">
+                <span>Store widget</span>
+                <s-badge tone="warning">Not configured</s-badge>
+              </div>
+            </div>
+          </div>
+          <DevelopmentNotice merchant={merchant} />
+          <DateRangeFilters analyticsHref="/app/analytics" />
+          <p className="cod-note">{currencyNote(merchant.currency)}</p>
+        </header>
 
-        <StoreContext merchant={merchant} />
+        <SectionBlock title="Sales performance">
+          <MetricGrid labels={SALES_METRICS} />
+        </SectionBlock>
 
-        <s-section heading="Store widget">
-          <s-stack direction="inline" gap="base" alignItems="center">
-            <s-badge tone="warning">Not configured</s-badge>
-            <s-text>
-              The storefront widget is not set up for {merchant.shopDomain}.
-            </s-text>
-          </s-stack>
-        </s-section>
+        <SectionBlock title="COD & payment performance">
+          <MetricGrid labels={PAYMENT_METRICS} />
+        </SectionBlock>
 
-        <s-section heading="Sales performance">
-          <s-stack direction="block" gap="base">
-            <DateRangeFilters analyticsHref="/app/analytics" />
-            <MetricGrid labels={SALES_METRICS} detail="Not tracked" />
-            <s-text color="subdued">{note}</s-text>
-          </s-stack>
-        </s-section>
+        <BundleDeals />
 
-        <s-section heading="COD & payment performance">
-          <MetricGrid labels={PAYMENT_METRICS} detail="Not tracked" />
-        </s-section>
+        <SectionBlock title="Revenue by feature">
+          <MetricGrid labels={FEATURE_REVENUE} />
+        </SectionBlock>
 
-        <BundleDeals currencyNote={note} />
+        <SectionBlock title="Delivery outcomes">
+          <MetricGrid labels={DELIVERY_OUTCOMES} />
+        </SectionBlock>
 
-        <s-section heading="Revenue by feature">
-          <MetricGrid labels={FEATURE_REVENUE} detail="Not tracked" />
-        </s-section>
-
-        <s-section heading="Delivery outcomes">
-          <MetricGrid labels={DELIVERY_OUTCOMES} detail="Not tracked" />
-        </s-section>
-
-        <s-section heading="Message summary">
-          <MetricGrid labels={MESSAGE_METRICS} detail="Not configured" />
-        </s-section>
+        <SectionBlock title="Message summary">
+          <MetricGrid labels={MESSAGE_METRICS} />
+        </SectionBlock>
       </div>
     </s-page>
   );

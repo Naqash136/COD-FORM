@@ -23,7 +23,6 @@ export default function OrderVerificationPage() {
       <s-section heading="Verification">
         <MetricGrid
           labels={["OTP verified orders", "Verification pending", "Verification failed"]}
-          detail="Not configured"
         />
       </s-section>
     </ModulePage>
