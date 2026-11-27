@@ -15,11 +15,13 @@ function sslForDatabase(databaseUrl: string) {
   if (hostname === "localhost" || hostname === "127.0.0.1" || hostname === "::1") {
     return false;
   }
-
-  return {
-    ca: fs.readFileSync(CA_PATH),
-    rejectUnauthorized: true,
-  };
+  if (hostname.endsWith(".supabase.co") || hostname.includes("supabase.com")) {
+    return {
+      ca: fs.readFileSync(CA_PATH),
+      rejectUnauthorized: true,
+    };
+  }
+  return { rejectUnauthorized: false };
 }
 
 function createPrismaClient() {
