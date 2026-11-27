@@ -1,3 +1,4 @@
+import { Form } from "react-router";
 import type { MerchantView } from "../dashboard/merchant.server";
 import {
   DELIVERY_OUTCOMES,
@@ -10,17 +11,25 @@ import {
 import { BundleDeals } from "./bundle-deals";
 import { DateRangeFilters } from "./date-range-filters";
 import { DevelopmentNotice } from "./module-page";
-import { MetricGrid, MetricIconBadge, SectionBlock, UnavailableButton } from "./metric-card";
+import { MetricGrid, MetricIconBadge, SectionBlock } from "./metric-card";
 
-export function OverviewDashboard({ merchant }: { merchant: MerchantView }) {
+export function OverviewDashboard({
+  merchant,
+  offers,
+  storageReady,
+}: {
+  merchant: MerchantView;
+  offers: Array<{ id: string; name: string; status: string; updatedAt: string }>;
+  storageReady: boolean;
+}) {
   return (
     <s-page inlineSize="large">
-      <UnavailableButton
-        slot="primary-action"
-        label="Create bundle deal"
-        icon="plus"
-        variant="primary"
-      />
+      <Form method="post" action="/app/bundles" slot="primary-action">
+        <input type="hidden" name="intent" value="create" />
+        <s-button type="submit" variant="primary" icon="plus" {...(storageReady ? {} : { disabled: true })}>
+          Create bundle deal
+        </s-button>
+      </Form>
       <div className="cod-dashboard">
         <header className="cod-header">
           <div className="cod-header-top">
@@ -49,7 +58,7 @@ export function OverviewDashboard({ merchant }: { merchant: MerchantView }) {
           <MetricGrid labels={PAYMENT_METRICS} />
         </SectionBlock>
 
-        <BundleDeals />
+        <BundleDeals offers={offers} storageReady={storageReady} />
 
         <SectionBlock title="Revenue by feature">
           <MetricGrid labels={FEATURE_REVENUE} />

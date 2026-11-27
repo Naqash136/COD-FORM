@@ -1,7 +1,18 @@
 import { createServer } from "vite";
 import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
+const databaseUrl = process.env.COD_FORM_TEST_DATABASE_URL;
+if (!databaseUrl) {
+  throw new Error("COD_FORM_TEST_DATABASE_URL is required. Merchant registration tests cannot be skipped.");
+}
+const databaseHost = new URL(databaseUrl).hostname;
+if (databaseHost !== "localhost" && databaseHost !== "127.0.0.1" && databaseHost !== "::1") {
+  throw new Error("Refusing to run merchant registration tests against a non-local database.");
+}
+process.env.DATABASE_URL = databaseUrl;
+process.env.DIRECT_URL = databaseUrl;
+
+const prisma = new PrismaClient({ datasources: { db: { url: databaseUrl } } });
 const shops = ["phase1-a.myshopify.com", "phase1-b.myshopify.com"];
 
 function adminFor(domain: string, shopifyShopId: string) {

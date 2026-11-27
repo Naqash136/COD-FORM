@@ -1,0 +1,394 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><script src="https://cdn.shopify.com/shopifycloud/polaris-2.js"></script><style>.cod-app {
+  color: #1a1a1a;
+}
+
+.cod-dashboard {
+  box-sizing: border-box;
+  width: min(1440px, 100%);
+  margin-inline: auto;
+  padding: 4px 24px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.cod-header,
+.cod-section,
+.cod-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cod-header-top,
+.cod-header-filters,
+.cod-section-head,
+.cod-panel-head,
+.cod-panel-tools,
+.cod-card-top,
+.cod-widget,
+.cod-dev-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cod-header-top,
+.cod-header-filters,
+.cod-section-head,
+.cod-panel-head,
+.cod-panel-tools {
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.cod-page-title,
+.cod-section-title,
+.cod-metric-label,
+.cod-metric-value,
+.cod-widget-copy,
+.cod-dev-copy,
+.cod-note {
+  margin: 0;
+}
+
+.cod-page-title {
+  font-size: 28px;
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.cod-store-name {
+  margin: 4px 0 0;
+  color: #616161;
+  font-size: 14px;
+}
+
+.cod-section-title {
+  font-size: 22px;
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.cod-widget {
+  background: #ffffff;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  padding: 10px 14px;
+}
+
+.cod-widget-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: #616161;
+  font-size: 13px;
+}
+
+.cod-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cod-dev-banner {
+  align-items: flex-start;
+  background: #fff8db;
+  border: 1px solid #f0e1a8;
+  border-radius: 12px;
+  color: #5c4813;
+  padding: 12px 14px;
+}
+
+.cod-dev-copy strong {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 14px;
+}
+
+.cod-dev-copy p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.cod-note {
+  color: #616161;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.cod-metrics {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.cod-card {
+  min-width: 0;
+  background: #ffffff;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  padding: 16px 18px 18px;
+}
+
+.cod-card-top {
+  margin-bottom: 14px;
+}
+
+.cod-icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background: #f3e8ff;
+  color: #6d28d9;
+}
+
+.cod-icon s-icon {
+  color: #6d28d9;
+}
+
+.cod-metric-label {
+  color: #616161;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.cod-metric-value {
+  color: #1a1a1a;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.cod-panel {
+  background: #ffffff;
+  border: 1px solid #e6e6e6;
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.cod-search {
+  width: min(100%, 280px);
+  flex: 1 1 220px;
+}
+
+.cod-search s-search-field {
+  display: block;
+  width: 100%;
+}
+
+.cod-actions,
+.cod-inline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (min-width: 700px) {
+  .cod-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .cod-metrics {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 699px) {
+  .cod-dashboard {
+    padding-inline: 16px;
+  }
+
+  .cod-page-title {
+    font-size: 24px;
+  }
+
+  .cod-section-title {
+    font-size: 20px;
+  }
+}
+
+.cod-editor {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+  gap: 16px;
+  align-items: start;
+  padding: 16px 24px 32px;
+}
+
+.cod-editor-config,
+.cod-editor-preview {
+  min-width: 0;
+}
+
+.cod-editor-config {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: calc(100vh - 32px);
+  overflow: auto;
+}
+
+.cod-editor-config.is-saving {
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+.cod-editor-preview {
+  position: sticky;
+  top: 16px;
+  max-height: calc(100vh - 32px);
+  overflow: auto;
+}
+
+.cod-editor-toolbar,
+.cod-editor-toolbar-status,
+.cod-editor-product,
+.cod-editor-offers {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.cod-editor-toolbar {
+  justify-content: space-between;
+  padding: 16px;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.cod-editor-toolbar s-text-field {
+  flex: 1 1 220px;
+}
+
+.cod-editor-section,
+.cod-editor-bar,
+.cod-editor-bars {
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.cod-editor-section summary,
+.cod-editor-bar summary {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 16px;
+  cursor: pointer;
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+.cod-editor-section-body,
+.cod-editor-bars {
+  padding: 0 16px 16px;
+}
+
+.cod-editor-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 16px;
+}
+
+.cod-editor-product {
+  align-items: flex-start;
+  padding-top: 8px;
+}
+
+.cod-editor-offers {
+  display: grid;
+  padding-top: 8px;
+}
+
+.cod-editor-bar-head,
+.cod-text-field,
+.cod-pricing-fields,
+.cod-sold-out {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.cod-editor-bar-head {
+  justify-content: space-between;
+  padding: 8px 12px;
+}
+
+.cod-bar-handle,
+.cod-bar-toggle {
+  border: 0;
+  background: transparent;
+  color: #1a1a1a;
+  font: inherit;
+  text-align: left;
+}
+
+.cod-bar-handle {
+  cursor: grab;
+  padding: 8px;
+}
+
+.cod-bar-toggle {
+  flex: 1 1 160px;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.cod-offer {
+  display: grid;
+  gap: 4px;
+  padding: 12px;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.cod-offer.is-selected {
+  border-color: #1a1a1a;
+  border-width: 2px;
+}
+
+.cod-offer[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
+@media (max-width: 899px) {
+  .cod-editor {
+    grid-template-columns: minmax(0, 1fr);
+    padding-inline: 16px;
+  }
+
+  .cod-editor-config,
+  .cod-editor-preview {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .cod-editor-preview {
+    position: static;
+  }
+}
+</style></head><body><main class="cod-editor-page"><div class="cod-editor"><section class="cod-editor-config" aria-label="Bundle configuration"><header class="cod-editor-toolbar"><s-button variant="tertiary" icon="arrow-left">Bundles &amp; Offers</s-button><s-text-field label="Bundle name" name="bundle-name" value="Weekend offer" required="true"></s-text-field><div class="cod-editor-toolbar-status"><s-badge tone="info">Draft</s-badge><s-text>All changes saved</s-text></div><div class="cod-actions"><s-button variant="secondary" disabled="true">Save draft</s-button><s-button variant="primary">Publish configuration</s-button></div></header><details class="cod-editor-section" open=""><summary><span>Products</span><s-text>Products this offer can use</s-text></summary><div class="cod-editor-section-body"><div><s-button>Choose products</s-button><ul></ul></div><s-text>No products selected.</s-text></div></details><details class="cod-editor-section"><summary><span>Settings</span><s-text>Offer settings are added in a later stage</s-text></summary><div class="cod-editor-section-body"><s-text>Settings for this offer will be specified after the editor layout is approved.</s-text></div></details><details class="cod-editor-section"><summary><span>Style</span><s-text>Appearance settings are added in a later stage</s-text></summary><div class="cod-editor-section-body"><s-text>Style controls will be specified after the editor layout is approved.</s-text></div></details><section class="cod-editor-bars"><div class="cod-panel-head"><h2 class="cod-section-title">Bundle bars</h2><s-button commandFor="add-bar-menu" icon="plus" variant="primary">Add bar</s-button><s-menu id="add-bar-menu" accessibilityLabel="Add a bundle bar"><s-button icon="hashtag" variant="tertiary" commandFor="add-bar-menu" command="--hide">Quantity break</s-button><s-button icon="gift-card" variant="tertiary" commandFor="add-bar-menu" command="--hide">Buy X, get Y</s-button><s-button icon="package" variant="tertiary" commandFor="add-bar-menu" command="--hide">Product bundle</s-button><s-button icon="refresh" variant="tertiary" commandFor="add-bar-menu" command="--hide">Mix &amp; Match</s-button><s-button icon="product" variant="tertiary" commandFor="add-bar-menu" command="--hide">Alternative product</s-button></s-menu></div><article class="cod-editor-bar" data-bar-id="barqty1"><div class="cod-editor-bar-head"><button type="button" class="cod-bar-handle" draggable="true" aria-label="Reorder Buy {{quantity}}" aria-keyshortcuts="ArrowUp ArrowDown"><s-icon type="drag-handle"></s-icon></button><button type="button" class="cod-bar-toggle" aria-expanded="false"><span>Buy {{quantity}}</span><s-text>Quantity break</s-text></button><s-button icon="menu-vertical" variant="tertiary" accessibilityLabel="Quantity break actions" commandFor="bar-actions-barqty1"></s-button><s-menu id="bar-actions-barqty1" accessibilityLabel="Quantity break actions"><s-button variant="tertiary" commandFor="bar-actions-barqty1" command="--hide" disabled="true">Move up</s-button><s-button variant="tertiary" commandFor="bar-actions-barqty1" command="--hide">Move down</s-button><s-button variant="tertiary" icon="duplicate" commandFor="bar-actions-barqty1" command="--hide">Duplicate</s-button><s-button variant="tertiary" icon="delete" tone="critical" commandFor="bar-actions-barqty1" command="--hide">Delete</s-button></s-menu></div></article><article class="cod-editor-bar" data-bar-id="barbxgy1"><div class="cod-editor-bar-head"><button type="button" class="cod-bar-handle" draggable="true" aria-label="Reorder Gift {{quantity}}" aria-keyshortcuts="ArrowUp ArrowDown"><s-icon type="drag-handle"></s-icon></button><button type="button" class="cod-bar-toggle" aria-expanded="false"><span>Gift {{quantity}}</span><s-text>Buy X, get Y</s-text></button><s-button icon="menu-vertical" variant="tertiary" accessibilityLabel="Buy X, get Y actions" commandFor="bar-actions-barbxgy1"></s-button><s-menu id="bar-actions-barbxgy1" accessibilityLabel="Buy X, get Y actions"><s-button variant="tertiary" commandFor="bar-actions-barbxgy1" command="--hide">Move up</s-button><s-button variant="tertiary" commandFor="bar-actions-barbxgy1" command="--hide" disabled="true">Move down</s-button><s-button variant="tertiary" icon="duplicate" commandFor="bar-actions-barbxgy1" command="--hide">Duplicate</s-button><s-button variant="tertiary" icon="delete" tone="critical" commandFor="bar-actions-barbxgy1" command="--hide">Delete</s-button></s-menu></div></article></section></section><aside class="cod-editor-preview" aria-label="Live preview"><div class="cod-panel"><h2 class="cod-section-title">Preview</h2><s-select label="Product" name="preview-product" value=""><s-option value="">Choose a product</s-option></s-select><s-select label="Country" name="preview-country" value="US"><s-option value="US">US</s-option><s-option value="PK">PK</s-option><s-option value="GB">GB</s-option><s-option value="CA">CA</s-option><s-option value="AU">AU</s-option><s-option value="AE">AE</s-option><s-option value="SA">SA</s-option><s-option value="DE">DE</s-option><s-option value="FR">FR</s-option><s-option value="IN">IN</s-option></s-select><s-text>Choose a product to preview this offer.</s-text><div class="cod-editor-offers" role="radiogroup" aria-label="Bundle offers"><div class="cod-offer is-selected" role="radio" aria-checked="true" aria-disabled="false" tabindex="0"><s-text>Best value</s-text><strong>Buy 1</strong><s-text>Save </s-text><s-text>Product pricing is not available yet.</s-text></div><div class="cod-offer" role="radio" aria-checked="false" aria-disabled="true" tabindex="-1" style="opacity:0.55;background-color:#f6f6f7;color:#616161;font-size:14px"><strong>Sold out</strong><strong>Gift 2</strong><s-text>Product pricing is not available yet.</s-text></div></div></div></aside></div><section><h2>Expanded shared controls</h2><article class="cod-editor-bar" data-bar-id="barbxgy1"><div class="cod-editor-bar-head"><button type="button" class="cod-bar-handle" draggable="true" aria-label="Reorder Gift {{quantity}}" aria-keyshortcuts="ArrowUp ArrowDown"><s-icon type="drag-handle"></s-icon></button><button type="button" class="cod-bar-toggle" aria-expanded="true"><span>Gift {{quantity}}</span><s-text>Buy X, get Y</s-text></button><s-button icon="menu-vertical" variant="tertiary" accessibilityLabel="Buy X, get Y actions" commandFor="bar-actions-barbxgy1"></s-button><s-menu id="bar-actions-barbxgy1" accessibilityLabel="Buy X, get Y actions"><s-button variant="tertiary" commandFor="bar-actions-barbxgy1" command="--hide" disabled="true">Move up</s-button><s-button variant="tertiary" commandFor="bar-actions-barbxgy1" command="--hide">Move down</s-button><s-button variant="tertiary" icon="duplicate" commandFor="bar-actions-barbxgy1" command="--hide">Duplicate</s-button><s-button variant="tertiary" icon="delete" tone="critical" commandFor="bar-actions-barbxgy1" command="--hide">Delete</s-button></s-menu></div><div class="cod-editor-section-body"><div class="cod-text-field"><s-text-field label="Title" name="barbxgy1-title" value="Gift {{quantity}}"></s-text-field><s-button variant="tertiary" icon="text-with-image" commandFor="variables-barbxgy1-title">Insert variable</s-button><s-menu id="variables-barbxgy1-title" accessibilityLabel="Insert a variable into barbxgy1-title"><s-button variant="tertiary" commandFor="variables-barbxgy1-title" command="--hide">Product</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-title" command="--hide">Quantity</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-title" command="--hide">Saved amount</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-title" command="--hide">Saved percentage</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-title" command="--hide">Product title</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-title" command="--hide">Regular price</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-title" command="--hide">Compare-at price</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-title" command="--hide">Final price</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-title" command="--hide">Discount</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-title" command="--hide">Savings</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-title" command="--hide">Currency</s-button></s-menu></div><div class="cod-text-field"><s-text-field label="Subtitle" name="barbxgy1-subtitle" value=""></s-text-field><s-button variant="tertiary" icon="text-with-image" commandFor="variables-barbxgy1-subtitle">Insert variable</s-button><s-menu id="variables-barbxgy1-subtitle" accessibilityLabel="Insert a variable into barbxgy1-subtitle"><s-button variant="tertiary" commandFor="variables-barbxgy1-subtitle" command="--hide">Product</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-subtitle" command="--hide">Quantity</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-subtitle" command="--hide">Saved amount</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-subtitle" command="--hide">Saved percentage</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-subtitle" command="--hide">Product title</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-subtitle" command="--hide">Regular price</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-subtitle" command="--hide">Compare-at price</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-subtitle" command="--hide">Final price</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-subtitle" command="--hide">Discount</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-subtitle" command="--hide">Savings</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-subtitle" command="--hide">Currency</s-button></s-menu></div><div class="cod-text-field"><s-text-field label="Label" name="barbxgy1-label" value=""></s-text-field><s-button variant="tertiary" icon="text-with-image" commandFor="variables-barbxgy1-label">Insert variable</s-button><s-menu id="variables-barbxgy1-label" accessibilityLabel="Insert a variable into barbxgy1-label"><s-button variant="tertiary" commandFor="variables-barbxgy1-label" command="--hide">Product</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-label" command="--hide">Quantity</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-label" command="--hide">Saved amount</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-label" command="--hide">Saved percentage</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-label" command="--hide">Product title</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-label" command="--hide">Regular price</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-label" command="--hide">Compare-at price</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-label" command="--hide">Final price</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-label" command="--hide">Discount</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-label" command="--hide">Savings</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-label" command="--hide">Currency</s-button></s-menu></div><div class="cod-text-field"><s-text-field label="Text" name="barbxgy1-text" value=""></s-text-field><s-button variant="tertiary" icon="text-with-image" commandFor="variables-barbxgy1-text">Insert variable</s-button><s-menu id="variables-barbxgy1-text" accessibilityLabel="Insert a variable into barbxgy1-text"><s-button variant="tertiary" commandFor="variables-barbxgy1-text" command="--hide">Product</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-text" command="--hide">Quantity</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-text" command="--hide">Saved amount</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-text" command="--hide">Saved percentage</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-text" command="--hide">Product title</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-text" command="--hide">Regular price</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-text" command="--hide">Compare-at price</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-text" command="--hide">Final price</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-text" command="--hide">Discount</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-text" command="--hide">Savings</s-button><s-button variant="tertiary" commandFor="variables-barbxgy1-text" command="--hide">Currency</s-button></s-menu></div><s-checkbox label="Selected by default" name="barbxgy1-default"></s-checkbox><div class="cod-pricing-fields"><s-select label="Buy price" name="Buy price-mode" value="full_price"><s-option value="full_price">Regular price</s-option><s-option value="percentage_off">Percentage off</s-option><s-option value="amount_off">Amount off</s-option><s-option value="fixed_price">Fixed price</s-option></s-select><s-text>Customers pay the regular product price.</s-text></div><div class="cod-pricing-fields"><s-select label="Get price" name="Get price-mode" value="percentage_off"><s-option value="percentage_off">Percentage off</s-option><s-option value="amount_off">Amount off</s-option><s-option value="fixed_price">Fixed price</s-option></s-select><s-text>Percentage off the get items.</s-text><s-text-field label="Percentage" name="Get price-percent" value="0"></s-text-field></div><div class="cod-sold-out"><s-checkbox label="Show as sold out" name="barbxgy1-sold-out" checked="true"></s-checkbox><s-checkbox label="Prevent selection" name="barbxgy1-sold-out-lock" checked="true"></s-checkbox><s-text-field label="Sold-out label" name="barbxgy1-sold-label" value="Sold out"></s-text-field><s-number-field label="Opacity" name="barbxgy1-opacity" value="55" min="0" max="100" step="1"></s-number-field><s-color-field label="Background color" name="barbxgy1-sold-bg" value="#f6f6f7"></s-color-field><s-color-field label="Text color" name="barbxgy1-sold-text" value="#616161"></s-color-field><s-number-field label="Font size" name="barbxgy1-sold-size" value="14" min="10" max="32" step="1"></s-number-field><s-text>Image, featured image, upsell, gift, personalisation, and highlights are added in a later stage.</s-text></div></div></article></section><section class="cod-editor-offers" role="radiogroup"><div class="cod-offer is-selected" role="radio" aria-checked="true" aria-disabled="false" style=""><strong></strong><s-text>Best value</s-text><strong>Buy 1</strong><s-text>Save 0.00 USD</s-text><s-text>17.99 USD</s-text><s-text>Compare at 24.99 USD</s-text><s-text>Save 0.00 USD (0%)</s-text></div><div class="cod-offer is-sold-out" role="radio" aria-checked="false" aria-disabled="true" style="opacity:0.55;background:#f6f6f7;color:#616161;font-size:14px"><strong>Sold out</strong><s-text></s-text><strong>Gift 2</strong><s-text></s-text><s-text>35.98 USD</s-text><s-text>Compare at 49.98 USD</s-text><s-text>Save 0.00 USD (0%)</s-text></div></section></main></body></html>

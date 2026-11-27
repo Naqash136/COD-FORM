@@ -10,6 +10,18 @@ function connectionStringForPg(databaseUrl: string) {
   return queryIndex === -1 ? databaseUrl : databaseUrl.slice(0, queryIndex);
 }
 
+function sslForDatabase(databaseUrl: string) {
+  const hostname = new URL(databaseUrl).hostname;
+  if (hostname === "localhost" || hostname === "127.0.0.1" || hostname === "::1") {
+    return false;
+  }
+
+  return {
+    ca: fs.readFileSync(CA_PATH),
+    rejectUnauthorized: true,
+  };
+}
+
 function createPrismaClient() {
   const databaseUrl = process.env.DATABASE_URL;
   if (!databaseUrl) {
@@ -21,10 +33,7 @@ function createPrismaClient() {
     max: 10,
     connectionTimeoutMillis: 30_000,
     idleTimeoutMillis: 30_000,
-    ssl: {
-      ca: fs.readFileSync(CA_PATH),
-      rejectUnauthorized: true,
-    },
+    ssl: sslForDatabase(databaseUrl),
   });
 
   return new PrismaClient({ adapter });

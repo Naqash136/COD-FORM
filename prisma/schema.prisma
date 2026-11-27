@@ -67,6 +67,7 @@ model Shop {
   createdAt       DateTime   @default(now())
   updatedAt       DateTime   @updatedAt
   loginHistory    LoginHistory[]
+  bundleOffers    BundleOffer[]
 
   @@index([status])
 }
@@ -82,4 +83,52 @@ model LoginHistory {
   @@index([shopId, createdAt])
   @@index([shopId, shopifyUserId, createdAt])
   @@index([createdAt])
+}
+
+enum BundleOfferStatus {
+  DRAFT
+  PUBLISHED
+  INACTIVE
+}
+
+/// Merchant-owned bundle configuration.
+/// storefrontActive and codFormActive stay false until a later activation step.
+/// Publication only moves publishedRevisionId and status. The migration CHECK
+/// rejects activation unless status is PUBLISHED and publishedRevisionId is set.
+/// A trigger rejects revision pointers that belong to another offer or merchant.
+/// Prisma cannot model that CHECK or the triggers; they live in the SQL migration.
+model BundleOffer {
+  id                  String            @id @default(uuid()) @db.Uuid
+  shopId              String            @db.Uuid
+  shop                Shop              @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  name                String
+  status              BundleOfferStatus @default(DRAFT)
+  storefrontActive    Boolean           @default(false)
+  codFormActive       Boolean           @default(false)
+  draftRevisionId     String?           @unique @db.Uuid
+  publishedRevisionId String?           @unique @db.Uuid
+  draftRevision       BundleRevision?   @relation("BundleDraftRevision", fields: [draftRevisionId], references: [id], onDelete: SetNull)
+  publishedRevision   BundleRevision?   @relation("BundlePublishedRevision", fields: [publishedRevisionId], references: [id], onDelete: SetNull)
+  revisions           BundleRevision[]  @relation("BundleOfferRevisions")
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+
+  @@index([shopId, status])
+  @@index([shopId, updatedAt])
+}
+
+/// Immutable snapshot. The migration rejects UPDATE. Saving a draft inserts a row.
+model BundleRevision {
+  id             String       @id @default(uuid()) @db.Uuid
+  offerId        String       @db.Uuid
+  offer          BundleOffer  @relation("BundleOfferRevisions", fields: [offerId], references: [id], onDelete: Cascade)
+  shopId         String       @db.Uuid
+  schemaVersion  Int
+  document       Json
+  createdAt      DateTime     @default(now())
+  draftOffer     BundleOffer? @relation("BundleDraftRevision")
+  publishedOffer BundleOffer? @relation("BundlePublishedRevision")
+
+  @@index([offerId, createdAt])
+  @@index([shopId])
 }
