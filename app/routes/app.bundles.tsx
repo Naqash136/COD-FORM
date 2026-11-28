@@ -1,8 +1,7 @@
 import type { ActionFunctionArgs, LoaderFunctionArgs } from "react-router";
-import { redirect, useLoaderData } from "react-router";
+import { Outlet, redirect, useLoaderData, useParams } from "react-router";
 import { bundleStorageMissing, createDraftForShop, listOffersForView } from "../bundles/editor.server";
-import { BundleDeals } from "../components/bundle-deals";
-import { ModulePage } from "../components/module-page";
+import { BundlesPageView } from "../components/bundles-page";
 import { headers } from "../dashboard/headers";
 import { loadMerchantView } from "../dashboard/merchant.server";
 import { authenticate } from "../shopify.server";
@@ -30,22 +29,20 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
 export default function BundlesPage() {
   const { merchant, offers, storageReady } = useLoaderData<typeof loader>();
+  const { offerId } = useParams();
 
   return (
-    <ModulePage
-      heading="Bundles & Offers"
-      summary="Draft and publish bundle configuration. Publishing does not activate the storefront or COD Form."
+    <BundlesPageView
       merchant={merchant}
-    >
-      <BundleDeals
-        storageReady={storageReady}
-        offers={offers.map((offer) => ({
-          id: offer.id,
-          name: offer.name,
-          status: offer.status,
-          updatedAt: offer.updatedAt.toISOString(),
-        }))}
-      />
-    </ModulePage>
+      storageReady={storageReady}
+      offerId={offerId}
+      editor={<Outlet />}
+      offers={offers.map((offer) => ({
+        id: offer.id,
+        name: offer.name,
+        status: offer.status,
+        updatedAt: offer.updatedAt.toISOString(),
+      }))}
+    />
   );
 }
